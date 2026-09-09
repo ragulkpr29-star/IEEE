@@ -54,14 +54,16 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
           {event.description}
         </p>
         
-        <Link
-          to="/events/$slug"
-          params={{ slug: event.slug }}
-          className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-navy hover:text-ieee transition-colors w-max mt-auto"
-        >
-          View Details
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-        </Link>
+        {(event.slug === 'workshop-1' || event.slug === 'megawatt-2-o') && (
+          <Link
+            to="/events/$slug"
+            params={{ slug: event.slug }}
+            className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-navy hover:text-ieee transition-colors w-max mt-auto"
+          >
+            View Details
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+          </Link>
+        )}
       </div>
     </motion.div>
   );

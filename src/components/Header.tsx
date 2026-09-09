@@ -57,9 +57,9 @@ export function Header() {
           <div className="flex items-center gap-4">
             <Link to="/" className="flex shrink-0 items-center transition-opacity hover:opacity-80">
               <img
-                src="/ieeelogo.png"
-                alt="IEEE Logo"
-                className={cn("w-auto object-contain transition-all duration-300", isScrolled ? "h-8 sm:h-9" : "h-9 sm:h-11")}
+                src="/peslogo.png"
+                alt="IEEE PES Logo"
+                className={cn("w-auto object-contain transition-all duration-300", isScrolled ? "h-10 sm:h-12" : "h-12 sm:h-14")}
               />
             </Link>
 

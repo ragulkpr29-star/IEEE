@@ -85,6 +85,19 @@ function EventDetails() {
             <div className="prose prose-lg prose-slate max-w-none font-sans text-muted-foreground leading-relaxed">
               <p>{event.description}</p>
             </div>
+
+            {event.slug === 'workshop-1' && (
+              <div className="mt-12">
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdLCDaQ0Gt6dmP1ASTfZ0MvEZG7odRbN0bEfPlLXPJfmvbhBQ/viewform?usp=header"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-ieee text-white font-sans text-sm font-bold uppercase tracking-widest hover:bg-navy transition-colors"
+                >
+                  Register Now
+                </a>
+              </div>
+            )}
           </motion.div>
 
         </div>

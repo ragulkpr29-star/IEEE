@@ -12,11 +12,18 @@ export function Footer() {
           
           {/* Column 1: Branding */}
           <div className="md:col-span-5 lg:col-span-4 flex flex-col items-start">
-            <img 
-              src="/keclogo.png" 
-              alt="Kongu Engineering College" 
-              className="h-12 w-auto object-contain mb-6"
-            />
+            <div className="flex items-center gap-6 mb-6">
+              <img 
+                src="/ieeelogo.png" 
+                alt="IEEE Logo" 
+                className="h-16 sm:h-20 w-auto object-contain"
+              />
+              <img 
+                src="/peslogo.png" 
+                alt="IEEE PES Logo" 
+                className="h-16 sm:h-20 w-auto object-contain"
+              />
+            </div>
             <h3 className="font-display font-bold text-base tracking-wider uppercase mb-1">
               IEEE Power & Energy Society
             </h3>
@@ -64,6 +71,18 @@ export function Footer() {
               <p className="font-medium text-white/90">Kongu Engineering College</p>
               <p>Perundurai, Erode – 638060</p>
               <p>Tamil Nadu, India</p>
+              <div className="pt-2 space-y-1">
+                <p>
+                  <a href="mailto:ieeekecpes@gmail.com" className="hover:text-kec-light transition-colors">
+                    Email: ieeekecpes@gmail.com
+                  </a>
+                </p>
+                <p>
+                  <a href="https://www.instagram.com/ieee_kec_pes/" target="_blank" rel="noopener noreferrer" className="hover:text-kec-light transition-colors">
+                    Instagram: @ieee_kec_pes
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>

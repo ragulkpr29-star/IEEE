@@ -38,6 +38,26 @@ export type PesEvent = {
 
 export const events: PesEvent[] = [
   {
+    slug: "workshop-1",
+    title: "Workshop 1",
+    month: "21 September 2026",
+    date: "2026-09-21",
+    category: "Workshop",
+    description: "Recent trends in industrial automation using PLC",
+    status: "planned",
+    registrationOpen: true,
+  },
+  {
+    slug: "megawatt-2-o",
+    title: "Megawatt 2.O",
+    month: "26 September 2026",
+    date: "2026-09-26",
+    category: "Symposium",
+    description: "Megawatt 2.O",
+    status: "planned",
+    registrationOpen: false,
+  },
+  {
     slug: "inaugural-guest-lecture",
     title: "Inaugural & Guest Lecture",
     month: "July 2026",
@@ -63,7 +83,7 @@ export const events: PesEvent[] = [
     slug: "spave2k26-inter-symposium",
     title: "SPAVE2K26 (Inter) – Symposium",
     month: "September 2026",
-    date: "2026-09-01",
+    date: "2026-09-27",
     category: "Symposium",
     description:
       "Inter-college technical symposium organised by the IEEE PES student chapter.",
