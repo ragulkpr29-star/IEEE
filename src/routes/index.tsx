@@ -21,7 +21,7 @@ const staggerContainer = {
 };
 
 function Index() {
-  const upcoming = getUpcomingEvents().slice(0, 3);
+  const upcoming = getUpcomingEvents().filter((event) => event.slug === "workshop-1" || event.slug === "megawatt-2-o");
 
   return (
     <SiteLayout>
@@ -32,7 +32,7 @@ function Index() {
         {/* Subtle Engineering Background */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
           <div className="absolute inset-0 grid-faint" />
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}
             className="absolute right-0 top-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-kec/20 to-transparent blur-3xl"
           />
@@ -40,27 +40,27 @@ function Index() {
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            
+
             {/* Left: Text Composition */}
             <motion.div variants={staggerContainer} initial="initial" animate="animate" className="max-w-2xl relative z-10">
               <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 text-kec-light text-xs font-bold uppercase tracking-[0.2em] mb-8">
                 <span className="w-6 h-px bg-kec-light" /> IEEE STUDENT BRANCH · 29741
               </motion.div>
-              
+
               <motion.h1 variants={fadeInUp} className="font-display font-bold tracking-tight text-white text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
                 IEEE POWER &<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">ENERGY SOCIETY</span>
               </motion.h1>
-              
+
               <motion.p variants={fadeInUp} className="mt-6 font-display font-bold tracking-widest text-kec-light text-sm sm:text-base uppercase">
                 KONGU ENGINEERING COLLEGE
               </motion.p>
-              
+
               <motion.p variants={fadeInUp} className="mt-8 text-lg sm:text-xl font-sans font-light text-white/70 max-w-lg leading-relaxed border-l-2 border-white/20 pl-4">
                 Powering Ideas.<br />
                 Engineering the Future.
               </motion.p>
-              
+
               <motion.div variants={fadeInUp} className="mt-12 flex flex-wrap gap-4 sm:gap-6">
                 <Link
                   to="/events"
@@ -82,7 +82,7 @@ function Index() {
             </motion.div>
 
             {/* Right: Premium Image Frame */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -92,7 +92,7 @@ function Index() {
               <div className="relative w-full bg-navy-light border border-white/10 p-2 sm:p-4">
                 <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-kec-light -mt-2 -mr-2" />
                 <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-ieee -mb-2 -ml-2" />
-                
+
                 <img
                   src="/groupimg.jpg"
                   alt="IEEE PES KEC Members"
@@ -112,7 +112,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
             {/* Left Content */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -130,7 +130,7 @@ function Index() {
             </motion.div>
 
             {/* Right: Small Technical Cards */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -159,7 +159,7 @@ function Index() {
       {/* ================================================== */}
       <section className="bg-surface py-20 sm:py-32 relative">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -183,12 +183,12 @@ function Index() {
           <div className="grid lg:grid-cols-3 gap-6">
             {upcoming.length > 0 ? (
               upcoming.map((event, i) => (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  key={event.slug} 
+                  key={event.slug}
                   className="group bg-background border border-border hover:border-ieee/30 transition-colors duration-300 p-8 flex flex-col"
                 >
                   <p className="font-sans text-xs font-bold text-kec uppercase tracking-widest mb-4 flex items-center gap-2">

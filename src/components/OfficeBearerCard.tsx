@@ -31,7 +31,7 @@ export function OfficeBearerCard({ bearer, position, featured = false }: Props) 
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-secondary to-border/50 text-muted-foreground/30">
-             <User className={cn("stroke-1", featured ? "h-20 w-20" : "h-12 w-12")} />
+            <User className={cn("stroke-1", featured ? "h-20 w-20" : "h-12 w-12")} />
           </div>
         )}
       </div>

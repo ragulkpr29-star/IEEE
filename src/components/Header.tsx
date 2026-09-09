@@ -59,7 +59,7 @@ export function Header() {
               <img
                 src="/peslogo.png"
                 alt="IEEE PES Logo"
-                className={cn("w-auto object-contain transition-all duration-300", isScrolled ? "h-10 sm:h-12" : "h-12 sm:h-14")}
+                className={cn("object-contain transition-all duration-300 bg-white rounded-full p-1", isScrolled ? "h-12 w-12 sm:h-14 sm:w-14" : "h-16 w-16 sm:h-20 sm:w-20")}
               />
             </Link>
 

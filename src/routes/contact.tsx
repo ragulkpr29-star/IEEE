@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { org } from "@/data/navigation";
 
@@ -59,23 +59,13 @@ function Contact() {
 
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-surface border border-border flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-ieee" />
+                    <Instagram className="w-5 h-5 text-ieee" />
                   </div>
                   <div>
-                    <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Email</h3>
-                    <a href="mailto:pes@kongu.edu" className="font-sans text-foreground font-medium hover:text-ieee transition-colors">
-                      pes@kongu.edu
+                    <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Instagram</h3>
+                    <a href="https://www.instagram.com/ieee_kec_pes/" target="_blank" rel="noopener noreferrer" className="font-sans text-foreground font-medium hover:text-ieee transition-colors">
+                      @ieee_kec_pes
                     </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-surface border border-border flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-navy" />
-                  </div>
-                  <div>
-                    <h3 className="font-sans text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Phone</h3>
-                    <p className="font-sans text-muted-foreground">Available upon official request</p>
                   </div>
                 </div>
               </div>
