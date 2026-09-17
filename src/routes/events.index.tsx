@@ -12,6 +12,7 @@ export const Route = createFileRoute("/events/")({
 
 function EventCard({ event, index }: { event: PesEvent; index: number }) {
   const isPast = event.status === "past";
+  const isRegistrationOpen = !!event.registrationUrl;
 
   return (
     <motion.div
@@ -21,20 +22,35 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className={cn(
         "group relative flex flex-col sm:flex-row gap-6 p-6 sm:p-8 bg-surface border transition-all duration-300",
-        isPast ? "border-border opacity-80" : "border-border hover:border-ieee/30 shadow-sm hover:shadow-md"
+        isPast 
+          ? "border-border/50 opacity-80" 
+          : isRegistrationOpen 
+            ? "border-kec/30 shadow-md hover:shadow-lg translate-y-0 hover:-translate-y-0.5 overflow-hidden" 
+            : "border-border/60 hover:border-border"
       )}
     >
-      <div className="flex flex-col sm:w-1/4 shrink-0 border-l-2 border-kec pl-4 py-1 self-start">
+      {isRegistrationOpen && (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-kec opacity-90" />
+      )}
+
+      <div className={cn("flex flex-col sm:w-1/4 shrink-0 border-l pl-4 py-1 self-start relative z-10", isRegistrationOpen ? "border-kec border-l-2" : "border-border")}>
         <p className="font-sans text-xs font-bold text-navy uppercase tracking-widest flex items-center gap-2">
-          <Calendar className="w-3.5 h-3.5 text-kec" />
+          <Calendar className={cn("w-3.5 h-3.5", isRegistrationOpen ? "text-kec" : "text-muted-foreground")} />
           {event.month}
         </p>
-        <p className={cn("text-[10px] font-bold uppercase tracking-widest mt-3 w-max px-2 py-1", isPast ? "bg-slate-100 text-slate-500" : "bg-navy/5 text-ieee")}>
-          {event.status === "planned" ? "Planned" : "Completed"}
-        </p>
+        
+        {isRegistrationOpen ? (
+          <p className="text-[10px] font-bold uppercase tracking-widest mt-3 w-max px-2.5 py-1.5 bg-kec/10 text-kec border border-kec/20">
+            Registration Open
+          </p>
+        ) : (
+          <p className={cn("text-[10px] font-bold uppercase tracking-widest mt-3 w-max px-2 py-1", isPast ? "bg-slate-100 text-slate-500" : "bg-navy/5 text-ieee")}>
+            {event.status === "planned" ? "Planned" : "Completed"}
+          </p>
+        )}
       </div>
       
-      <div className="flex flex-col flex-1">
+      <div className="flex flex-col flex-1 relative z-10">
         <div className="flex flex-wrap items-center gap-3 mb-3">
           <span className="text-[10px] font-bold px-2 py-1 bg-navy text-white uppercase tracking-widest">
             {event.category}
@@ -46,23 +62,34 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
           )}
         </div>
         
-        <h3 className="font-display text-2xl font-bold text-navy mb-3 group-hover:text-ieee transition-colors">
+        <h3 className={cn("font-display text-2xl font-bold mb-3 transition-colors", isRegistrationOpen ? "text-navy group-hover:text-ieee" : "text-navy")}>
           {event.title}
         </h3>
         
-        <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-6">
+        <p className={cn("font-sans text-sm text-muted-foreground leading-relaxed", isRegistrationOpen ? "mb-6" : "")}>
           {event.description}
         </p>
         
-        {(event.slug === 'workshop-1' || event.slug === 'megawatt-2-o') && (
-          <Link
-            to="/events/$slug"
-            params={{ slug: event.slug }}
-            className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-navy hover:text-ieee transition-colors w-max mt-auto"
-          >
-            View Details
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-          </Link>
+        {isRegistrationOpen && (
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-auto pt-2">
+            <a
+              href={event.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-ieee text-white font-sans text-xs font-bold uppercase tracking-widest hover:bg-navy transition-all group/btn"
+            >
+              Register Now
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1" />
+            </a>
+            <Link
+              to="/events/$slug"
+              params={{ slug: event.slug }}
+              className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-navy hover:text-ieee transition-colors w-max"
+            >
+              View Details
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         )}
       </div>
     </motion.div>
@@ -83,6 +110,9 @@ function EventsIndex() {
 
   const filteredUpcoming = filterEvents(upcoming);
   const filteredPast = filterEvents(past);
+
+  const registrationOpenEvents = filteredUpcoming.filter((e) => !!e.registrationUrl);
+  const otherUpcomingEvents = filteredUpcoming.filter((e) => !e.registrationUrl);
 
   return (
     <SiteLayout>
@@ -126,22 +156,37 @@ function EventsIndex() {
           </div>
 
           <div className="space-y-20">
+            {/* Registration Open Section */}
+            {registrationOpenEvents.length > 0 && (
+              <div>
+                <h2 className="eyebrow flex items-center gap-4 mb-8">
+                  <span className="w-8 h-px bg-kec" /> REGISTRATION OPEN
+                </h2>
+                
+                <div className="space-y-6">
+                  {registrationOpenEvents.map((event, i) => (
+                    <EventCard key={event.slug} event={event} index={i} />
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Upcoming Events */}
             <div>
               <h2 className="eyebrow flex items-center gap-4 mb-8">
-                <span className="w-8 h-px bg-kec" /> UPCOMING
+                <span className="w-8 h-px bg-kec" /> UPCOMING EVENTS
               </h2>
               
-              {filteredUpcoming.length > 0 ? (
+              {otherUpcomingEvents.length > 0 ? (
                 <div className="space-y-6">
-                  {filteredUpcoming.map((event, i) => (
+                  {otherUpcomingEvents.map((event, i) => (
                     <EventCard key={event.slug} event={event} index={i} />
                   ))}
                 </div>
               ) : (
                 <div className="py-12 text-center border border-border bg-surface">
                   <p className="text-muted-foreground text-sm uppercase tracking-widest font-bold">
-                    No upcoming events found.
+                    No other upcoming events found.
                   </p>
                 </div>
               )}

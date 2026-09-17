@@ -30,6 +30,7 @@ export type PesEvent = {
   description: string;
   status: EventStatus;
   registrationOpen: boolean;
+  registrationUrl?: string;
   venue?: string;
   speaker?: string;
   /** Poster/image URL when an official poster is available. */
@@ -46,6 +47,7 @@ export const events: PesEvent[] = [
     description: "Recent trends in industrial automation using PLC",
     status: "planned",
     registrationOpen: true,
+    registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdLCDaQ0Gt6dmP1ASTfZ0MvEZG7odRbN0bEfPlLXPJfmvbhBQ/viewform?usp=header",
   },
   {
     slug: "megawatt-2-o",
@@ -55,7 +57,8 @@ export const events: PesEvent[] = [
     category: "Symposium",
     description: "Megawatt 2.O",
     status: "planned",
-    registrationOpen: false,
+    registrationOpen: true,
+    registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfnkkZqMyc1G8UhxomAr-jO8b3CPd3ZqjbeQgbJR5jxT5zg_w/viewform",
   },
   {
     slug: "inaugural-guest-lecture",
