@@ -15,7 +15,8 @@ export type EventCategory =
   | "Symposium"
   | "Webinar"
   | "Hackathon"
-  | "Field Visit";
+  | "Field Visit"
+  | "Technical Quiz";
 
 export type EventStatus = "planned" | "past";
 
@@ -54,7 +55,7 @@ export const events: PesEvent[] = [
     title: "Megawatt 2.O",
     month: "26 September 2026",
     date: "2026-09-26",
-    category: "Symposium",
+    category: "Technical Quiz",
     description: "Megawatt 2.O",
     status: "planned",
     registrationOpen: true,
