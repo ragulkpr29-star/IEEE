@@ -31,3 +31,5 @@ dist-ssr
 *.sln
 *.sw?
 .workspace/
+
+Add-Content .gitignore "`npublic/workshop1/*.zip" 
