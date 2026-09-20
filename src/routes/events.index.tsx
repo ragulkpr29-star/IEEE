@@ -11,8 +11,10 @@ export const Route = createFileRoute("/events/")({
 });
 
 function EventCard({ event, index }: { event: PesEvent; index: number }) {
-  const isPast = event.status === "past";
-  const isRegistrationOpen = !!event.registrationUrl;
+  const dateObj = new Date();
+  const todayStr = new Date(dateObj.getTime() - dateObj.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const isPast = event.date < todayStr;
+  const isRegistrationOpen = event.registrationOpen && !isPast;
 
   return (
     <motion.div
@@ -22,10 +24,10 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.05 }}
       className={cn(
         "group relative flex flex-col sm:flex-row gap-6 p-6 sm:p-8 bg-surface border transition-all duration-300",
-        isPast 
-          ? "border-border/50 opacity-80" 
-          : isRegistrationOpen 
-            ? "border-kec/30 shadow-md hover:shadow-lg translate-y-0 hover:-translate-y-0.5 overflow-hidden" 
+        isPast
+          ? "border-border/50 opacity-80"
+          : isRegistrationOpen
+            ? "border-kec/30 shadow-md hover:shadow-lg translate-y-0 hover:-translate-y-0.5 overflow-hidden"
             : "border-border/60 hover:border-border"
       )}
     >
@@ -38,18 +40,18 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
           <Calendar className={cn("w-3.5 h-3.5", isRegistrationOpen ? "text-kec" : "text-muted-foreground")} />
           {event.month}
         </p>
-        
+
         {isRegistrationOpen ? (
           <p className="text-[10px] font-bold uppercase tracking-widest mt-3 w-max px-2.5 py-1.5 bg-kec/10 text-kec border border-kec/20">
             Registration Open
           </p>
         ) : (
           <p className={cn("text-[10px] font-bold uppercase tracking-widest mt-3 w-max px-2 py-1", isPast ? "bg-slate-100 text-slate-500" : "bg-navy/5 text-ieee")}>
-            {event.status === "planned" ? "Planned" : "Completed"}
+            {isPast ? "Completed" : "Planned"}
           </p>
         )}
       </div>
-      
+
       <div className="flex flex-col flex-1 relative z-10">
         <div className="flex flex-wrap items-center gap-3 mb-3">
           <span className="text-[10px] font-bold px-2 py-1 bg-navy text-white uppercase tracking-widest">
@@ -61,17 +63,17 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
             </span>
           )}
         </div>
-        
+
         <h3 className={cn("font-display text-2xl font-bold mb-3 transition-colors", isRegistrationOpen ? "text-navy group-hover:text-ieee" : "text-navy")}>
           {event.title}
         </h3>
-        
+
         <p className={cn("font-sans text-sm text-muted-foreground leading-relaxed", isRegistrationOpen ? "mb-6" : "")}>
           {event.description}
         </p>
-        
-        {isRegistrationOpen && (
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-auto pt-2">
+
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-auto pt-2">
+          {isRegistrationOpen && event.registrationUrl && (
             <a
               href={event.registrationUrl}
               target="_blank"
@@ -81,6 +83,18 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
               Register Now
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-1" />
             </a>
+          )}
+          {isPast && (
+            <Link
+              to="/events/$slug"
+              params={{ slug: event.slug }}
+              hash="event-gallery"
+              className="inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-kec hover:text-ieee transition-colors w-max"
+            >
+              VIEW EVENT PHOTOS &rarr;
+            </Link>
+          )}
+          {!isPast && isRegistrationOpen && (
             <Link
               to="/events/$slug"
               params={{ slug: event.slug }}
@@ -89,8 +103,8 @@ function EventCard({ event, index }: { event: PesEvent; index: number }) {
               View Details
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </motion.div>
   );
@@ -111,8 +125,8 @@ function EventsIndex() {
   const filteredUpcoming = filterEvents(upcoming);
   const filteredPast = filterEvents(past);
 
-  const registrationOpenEvents = filteredUpcoming.filter((e) => !!e.registrationUrl);
-  const otherUpcomingEvents = filteredUpcoming.filter((e) => !e.registrationUrl);
+  const registrationOpenEvents = filteredUpcoming.filter((e) => e.registrationOpen);
+  const otherUpcomingEvents = filteredUpcoming.filter((e) => !e.registrationOpen);
 
   return (
     <SiteLayout>
@@ -121,7 +135,7 @@ function EventsIndex() {
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
           <div className="absolute inset-0 grid-faint" />
         </div>
-        
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <p className="font-display text-xs font-bold tracking-[0.2em] uppercase text-kec-light mb-4">
@@ -140,7 +154,7 @@ function EventsIndex() {
       {/* Main Content */}
       <section className="bg-background py-16 sm:py-24 min-h-[50vh]">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          
+
           {/* Search Bar */}
           <div className="mb-16 relative max-w-md mx-auto">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -162,7 +176,7 @@ function EventsIndex() {
                 <h2 className="eyebrow flex items-center gap-4 mb-8">
                   <span className="w-8 h-px bg-kec" /> REGISTRATION OPEN
                 </h2>
-                
+
                 <div className="space-y-6">
                   {registrationOpenEvents.map((event, i) => (
                     <EventCard key={event.slug} event={event} index={i} />
@@ -176,7 +190,7 @@ function EventsIndex() {
               <h2 className="eyebrow flex items-center gap-4 mb-8">
                 <span className="w-8 h-px bg-kec" /> UPCOMING EVENTS
               </h2>
-              
+
               {otherUpcomingEvents.length > 0 ? (
                 <div className="space-y-6">
                   {otherUpcomingEvents.map((event, i) => (
@@ -197,7 +211,7 @@ function EventsIndex() {
               <h2 className="eyebrow flex items-center gap-4 mb-8 text-muted">
                 <span className="w-8 h-px bg-muted" /> PAST
               </h2>
-              
+
               {filteredPast.length > 0 ? (
                 <div className="space-y-6">
                   {filteredPast.map((event, i) => (
@@ -213,7 +227,7 @@ function EventsIndex() {
               )}
             </div>
           </div>
-          
+
         </div>
       </section>
     </SiteLayout>

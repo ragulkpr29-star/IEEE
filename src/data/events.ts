@@ -18,8 +18,6 @@ export type EventCategory =
   | "Field Visit"
   | "Technical Quiz";
 
-export type EventStatus = "planned" | "past";
-
 export type PesEvent = {
   slug: string;
   title: string;
@@ -29,7 +27,10 @@ export type PesEvent = {
   date: string;
   category: EventCategory;
   description: string;
-  status: EventStatus;
+  media?: {
+    images?: string[];
+    videos?: string[];
+  };
   registrationOpen: boolean;
   registrationUrl?: string;
   venue?: string;
@@ -42,13 +43,25 @@ export const events: PesEvent[] = [
   {
     slug: "workshop-1",
     title: "Workshop 1",
-    month: "21 September 2026",
-    date: "2026-09-21",
+    month: "19 September 2026",
+    date: "2026-09-19",
     category: "Workshop",
     description: "Recent trends in industrial automation using PLC",
-    status: "planned",
-    registrationOpen: true,
-    registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdLCDaQ0Gt6dmP1ASTfZ0MvEZG7odRbN0bEfPlLXPJfmvbhBQ/viewform?usp=header",
+    registrationOpen: false,
+    media: {
+      images: [
+        "/workshop1/09-19-2026 09_12_43 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_12_49 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_12_57 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_13_04 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_22_39 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_22_43 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_22_46 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_22_49 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_22_56 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+        "/workshop1/09-19-2026 09_40_22 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg"
+      ]
+    }
   },
   {
     slug: "megawatt-2-o",
@@ -57,31 +70,29 @@ export const events: PesEvent[] = [
     date: "2026-09-26",
     category: "Technical Quiz",
     description: "Megawatt 2.O",
-    status: "planned",
     registrationOpen: true,
     registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfnkkZqMyc1G8UhxomAr-jO8b3CPd3ZqjbeQgbJR5jxT5zg_w/viewform",
+    image: "/megawat.png",
+  },
+  {
+    slug: "circuit-debugging",
+    title: "Circuit Debugging",
+    month: "10 October 2026",
+    date: "2026-10-10",
+    category: "Technical Quiz",
+    description: "An exciting technical event focused on identifying and resolving circuit faults.",
+    registrationOpen: true,
+    registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSezhZx4P0jM8dZTU0n1j9Vf0BPKVUgQBmmaeEsYJJyNY8Kaag/viewform",
   },
   {
     slug: "inaugural-guest-lecture",
     title: "Inaugural & Guest Lecture",
-    month: "July 2026",
-    date: "2026-07-01",
+    month: "To be announced",
+    date: "2099-12-31", // Placeholder future date to force it into upcoming events
     category: "Guest Lecture",
     description:
       "Formal inauguration of the IEEE Power & Energy Society student chapter activities for 2026–27, followed by a guest lecture.",
-    status: "planned",
     registrationOpen: false,
-  },
-  {
-    slug: "workshop-i",
-    title: "Workshop I",
-    month: "August 2026",
-    date: "2026-08-01",
-    category: "Workshop",
-    description:
-      "Hands-on workshop for student members on power and energy engineering practice.",
-    status: "planned",
-    registrationOpen: true,
   },
   {
     slug: "spave2k26-inter-symposium",
@@ -91,8 +102,7 @@ export const events: PesEvent[] = [
     category: "Symposium",
     description:
       "Inter-college technical symposium organised by the IEEE PES student chapter.",
-    status: "planned",
-    registrationOpen: true,
+    registrationOpen: false,
   },
   {
     slug: "webinar-gs",
@@ -101,8 +111,7 @@ export const events: PesEvent[] = [
     date: "2026-10-01",
     category: "Webinar",
     description: "Online session for student members conducted by the chapter.",
-    status: "planned",
-    registrationOpen: true,
+    registrationOpen: false,
   },
   {
     slug: "hackathon",
@@ -112,7 +121,6 @@ export const events: PesEvent[] = [
     category: "Hackathon",
     description:
       "Team-based problem solving event on power and energy themes.",
-    status: "planned",
     registrationOpen: false,
   },
   {
@@ -122,7 +130,6 @@ export const events: PesEvent[] = [
     date: "2026-12-01",
     category: "Guest Lecture",
     description: "Expert talk arranged for IEEE PES student members.",
-    status: "planned",
     registrationOpen: false,
   },
   {
@@ -133,7 +140,6 @@ export const events: PesEvent[] = [
     category: "Field Visit",
     description:
       "Industrial/field exposure visit for student members of the chapter.",
-    status: "planned",
     registrationOpen: false,
   },
   {
@@ -144,7 +150,6 @@ export const events: PesEvent[] = [
     category: "Symposium",
     description:
       "Intra-college technical symposium organised by the IEEE PES student chapter.",
-    status: "planned",
     registrationOpen: false,
   },
   {
@@ -155,7 +160,6 @@ export const events: PesEvent[] = [
     category: "Workshop",
     description:
       "Second hands-on workshop of the academic year for student members.",
-    status: "planned",
     registrationOpen: false,
   },
   {
@@ -166,32 +170,38 @@ export const events: PesEvent[] = [
     category: "Guest Lecture",
     description:
       "Closing event of the 2026–27 chapter calendar with a guest lecture.",
-    status: "planned",
     registrationOpen: false,
   },
 ];
 
 const byDate = (a: PesEvent, b: PesEvent) => a.date.localeCompare(b.date);
 
-/** Planned events whose month has not yet ended. */
+function getTodayStr(now: Date): string {
+  // Adjust to IST or handle timezone properly if needed.
+  // Using simple ISO string for now based on local machine time.
+  const dateObj = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return dateObj.toISOString().slice(0, 10);
+}
+
 export function getUpcomingEvents(now: Date = new Date()): PesEvent[] {
-  const cutoff = new Date(now.getFullYear(), now.getMonth(), 1)
-    .toISOString()
-    .slice(0, 10);
+  const todayStr = getTodayStr(now);
   return events
-    .filter((e) => e.status === "planned" && e.date >= cutoff)
+    .filter((e) => e.date >= todayStr)
     .sort(byDate);
 }
 
-/** Events with documented outcomes. Empty until the chapter adds records. */
-export function getPastEvents(): PesEvent[] {
-  return events.filter((e) => e.status === "past").sort(byDate).reverse();
+export function getPastEvents(now: Date = new Date()): PesEvent[] {
+  const todayStr = getTodayStr(now);
+  return events
+    .filter((e) => e.date < todayStr)
+    .sort(byDate)
+    .reverse();
 }
 
 export function getEventBySlug(slug: string): PesEvent | undefined {
   return events.find((e) => e.slug === slug);
 }
 
-export function getRegisterableEvents(now?: Date): PesEvent[] {
+export function getRegisterableEvents(now: Date = new Date()): PesEvent[] {
   return getUpcomingEvents(now).filter((e) => e.registrationOpen);
 }
