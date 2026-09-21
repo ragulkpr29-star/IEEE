@@ -22,13 +22,17 @@ export function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300 bg-navy text-white",
-        isScrolled ? "shadow-md shadow-navy/20" : ""
+        isScrolled ? "shadow-md shadow-navy/20" : "",
       )}
     >
       {/* Top Branding Row */}
-      <div className={cn("mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-300", isScrolled ? "py-2" : "py-3")}>
+      <div
+        className={cn(
+          "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 transition-all duration-300",
+          isScrolled ? "py-2" : "py-3",
+        )}
+      >
         <div className="flex items-center justify-between">
-
           {/* Left: Logos and Identity */}
           <div className="flex items-center gap-4 sm:gap-6">
             <Link
@@ -39,7 +43,10 @@ export function Header() {
               <img
                 src="/keclogo.png"
                 alt="KEC Logo"
-                className={cn("w-auto object-contain transition-all duration-300", isScrolled ? "h-10 sm:h-12" : "h-12 sm:h-14")}
+                className={cn(
+                  "w-auto object-contain transition-all duration-300",
+                  isScrolled ? "h-10 sm:h-12" : "h-12 sm:h-14",
+                )}
               />
             </Link>
 
@@ -59,7 +66,10 @@ export function Header() {
               <img
                 src="/peslogo.png"
                 alt="IEEE PES Logo"
-                className={cn("object-contain transition-all duration-300 bg-white rounded-full p-1", isScrolled ? "h-12 w-12 sm:h-14 sm:w-14" : "h-16 w-16 sm:h-20 sm:w-20")}
+                className={cn(
+                  "object-contain transition-all duration-300 bg-white rounded-full p-1",
+                  isScrolled ? "h-12 w-12 sm:h-14 sm:w-14" : "h-16 w-16 sm:h-20 sm:w-20",
+                )}
               />
             </Link>
 
@@ -73,18 +83,29 @@ export function Header() {
               <span className="sr-only">Open main menu</span>
               <AnimatePresence mode="wait" initial={false}>
                 {mobileMenuOpen ? (
-                  <motion.div key="close" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.2 }}>
+                  <motion.div
+                    key="close"
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <X className="block h-6 w-6" aria-hidden="true" />
                   </motion.div>
                 ) : (
-                  <motion.div key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.2 }}>
+                  <motion.div
+                    key="menu"
+                    initial={{ opacity: 0, rotate: 90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: -90 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <Menu className="block h-6 w-6" aria-hidden="true" />
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.button>
           </div>
-
         </div>
       </div>
 
@@ -100,16 +121,14 @@ export function Header() {
                     to={link.to}
                     className={cn(
                       "group relative text-xs font-bold uppercase tracking-widest transition-colors duration-200 h-full flex items-center px-1",
-                      active ? "text-white" : "text-white/70 hover:text-white"
+                      active ? "text-white" : "text-white/70 hover:text-white",
                     )}
                   >
                     {link.label}
 
                     {/* Active Indicator */}
                     {active ? (
-                      <div
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-kec-light"
-                      />
+                      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-kec-light" />
                     ) : (
                       <span className="absolute bottom-0 left-0 w-full h-[2px] bg-ieee scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 transition-all duration-300 origin-left" />
                     )}
@@ -135,7 +154,12 @@ export function Header() {
               {navLinks.map((link, i) => {
                 const active = link.to === "/" ? pathname === "/" : pathname.startsWith(link.to);
                 return (
-                  <motion.div key={link.to} initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.05 + i * 0.05 }}>
+                  <motion.div
+                    key={link.to}
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.05 + i * 0.05 }}
+                  >
                     <Link
                       to={link.to}
                       onClick={() => setMobileMenuOpen(false)}
@@ -143,7 +167,7 @@ export function Header() {
                         "block rounded-md px-4 py-3 text-sm font-bold uppercase tracking-wider transition-colors",
                         active
                           ? "bg-white/10 text-kec-light border-l-2 border-kec-light"
-                          : "text-white/80 hover:bg-white/5 hover:text-white border-l-2 border-transparent"
+                          : "text-white/80 hover:bg-white/5 hover:text-white border-l-2 border-transparent",
                       )}
                     >
                       {link.label}

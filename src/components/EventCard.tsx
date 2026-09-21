@@ -19,15 +19,22 @@ function PosterArea({ event }: { event: PesEvent }) {
         <p className="font-display text-xs font-bold uppercase tracking-[0.2em] text-ieee/70">
           {event.category}
         </p>
-        <p className="mt-1 text-[0.7rem] text-muted-foreground">
-          Poster to be announced
-        </p>
+        <p className="mt-1 text-[0.7rem] text-muted-foreground">Poster to be announced</p>
       </div>
     </div>
   );
 }
 
 export function EventCard({ event }: { event: PesEvent }) {
+  const dateObj = new Date();
+  const todayStr = new Date(dateObj.getTime() - dateObj.getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 10);
+  const isForceOngoing = event.slug === "megawatt-2-o" || event.slug === "circuit-quest";
+  const isOngoing = event.date === todayStr || isForceOngoing;
+  const isPast = event.date < todayStr && !isForceOngoing;
+  const isUpcoming = event.date > todayStr && !isForceOngoing;
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover">
       <PosterArea event={event} />
@@ -36,11 +43,21 @@ export function EventCard({ event }: { event: PesEvent }) {
           <span className="rounded-full border border-border bg-secondary px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-secondary-foreground">
             {event.category}
           </span>
-          {event.status === "planned" ? (
+          {isUpcoming && (
             <span className="rounded-full border border-kec/40 bg-accent px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-kec-foreground">
-              Planned
+              Upcoming
             </span>
-          ) : null}
+          )}
+          {isOngoing && (
+            <span className="rounded-full border border-kec/40 bg-kec/10 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-kec">
+              Ongoing
+            </span>
+          )}
+          {isPast && (
+            <span className="rounded-full border border-border bg-slate-100 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-slate-500">
+              Past
+            </span>
+          )}
         </div>
 
         <h3 className="mt-3 font-display text-lg font-bold leading-snug text-navy">
@@ -65,7 +82,6 @@ export function EventCard({ event }: { event: PesEvent }) {
             View Details
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
-
         </div>
       </div>
     </article>

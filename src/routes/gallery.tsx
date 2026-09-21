@@ -15,9 +15,7 @@ function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const filteredImages =
-    filter === "All"
-      ? galleryImages
-      : galleryImages.filter((img) => img.category === filter);
+    filter === "All" ? galleryImages : galleryImages.filter((img) => img.category === filter);
 
   return (
     <SiteLayout>
@@ -26,9 +24,13 @@ function Gallery() {
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
           <div className="absolute inset-0 grid-faint" />
         </div>
-        
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <p className="font-display text-xs font-bold tracking-[0.2em] uppercase text-kec-light mb-4">
               Visual Archive
             </p>
@@ -45,7 +47,6 @@ function Gallery() {
       {/* Main Content */}
       <section className="bg-background py-16 sm:py-24 min-h-screen">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
           {/* Filters */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-16">
             {galleryCategories.map((cat) => (
@@ -56,7 +57,7 @@ function Gallery() {
                   "px-4 py-2 font-sans text-xs font-bold uppercase tracking-widest transition-all",
                   filter === cat
                     ? "bg-navy text-white shadow-sm"
-                    : "bg-surface text-muted-foreground border border-border hover:border-ieee hover:text-navy"
+                    : "bg-surface text-muted-foreground border border-border hover:border-ieee hover:text-navy",
                 )}
               >
                 {cat}
@@ -87,7 +88,7 @@ function Gallery() {
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                     </div>
-                    
+
                     <div className="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
                       <Maximize2 className="text-white w-8 h-8 mb-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0" />
                       <p className="text-white font-sans text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 translate-y-4 group-hover:translate-y-0">

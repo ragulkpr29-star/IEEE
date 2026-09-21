@@ -79,15 +79,9 @@ export function GalleryLightbox({ images, index, onClose, onChange }: Props) {
       </button>
 
       <figure className="relative z-[5] max-h-full w-full max-w-4xl overflow-hidden rounded-xl bg-background shadow-card-hover animate-in zoom-in-95 duration-200">
-        <img
-          src={image.src}
-          alt={image.alt}
-          className="max-h-[70vh] w-full object-contain"
-        />
+        <img src={image.src} alt={image.alt} className="max-h-[70vh] w-full object-contain" />
         <figcaption className="border-t border-border px-5 py-3 text-sm text-muted-foreground">
-          {image.event ? (
-            <span className="font-semibold text-navy">{image.event} · </span>
-          ) : null}
+          {image.event ? <span className="font-semibold text-navy">{image.event} · </span> : null}
           {image.alt}
         </figcaption>
       </figure>

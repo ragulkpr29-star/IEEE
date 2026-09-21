@@ -20,7 +20,7 @@ const roleHierarchy: OfficeBearerRole[] = [
   "Event Management Team",
   "Documentation & Reporting Lead",
   "VTools Coordinator",
-  "Webmaster"
+  "Webmaster",
 ];
 
 function MemberCard({ member, index }: { member: OfficeBearer; index: number }) {
@@ -149,7 +149,11 @@ function OfficeBearers() {
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <p className="font-display text-xs font-bold tracking-[0.2em] uppercase text-kec-light mb-4">
               Team 2026–2027
             </p>
@@ -157,7 +161,8 @@ function OfficeBearers() {
               OFFICE BEARERS
             </h1>
             <p className="font-sans text-lg text-white/70 max-w-2xl mx-auto font-light">
-              The student leadership driving innovation and technical excellence at IEEE PES Kongu Engineering College.
+              The student leadership driving innovation and technical excellence at IEEE PES Kongu
+              Engineering College.
             </p>
           </motion.div>
         </div>
@@ -166,7 +171,6 @@ function OfficeBearers() {
       {/* Main Content */}
       <section className="bg-[#F7F9F8] py-16 sm:py-24 min-h-[50vh]">
         <div className="mx-auto w-full max-w-[1180px] px-4 sm:px-6 lg:px-8">
-
           <div className="space-y-16 sm:space-y-24">
             {roleHierarchy.map((role) => {
               const members = officeBearers.filter((m) => m.role === role);
@@ -189,13 +193,21 @@ function OfficeBearers() {
                   {isTopLeadership ? (
                     <div className="w-full flex flex-col gap-8 sm:gap-10 items-center">
                       {members.map((member, i) => (
-                        <MemberCard key={`${member.rollNumber}-${member.role}`} member={member} index={i} />
+                        <MemberCard
+                          key={`${member.rollNumber}-${member.role}`}
+                          member={member}
+                          index={i}
+                        />
                       ))}
                     </div>
                   ) : (
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       {members.map((member, i) => (
-                        <CompactMemberCard key={`${member.rollNumber}-${member.role}`} member={member} index={i} />
+                        <CompactMemberCard
+                          key={`${member.rollNumber}-${member.role}`}
+                          member={member}
+                          index={i}
+                        />
                       ))}
                     </div>
                   )}
@@ -203,10 +215,8 @@ function OfficeBearers() {
               );
             })}
           </div>
-
         </div>
       </section>
     </SiteLayout>
   );
 }
-

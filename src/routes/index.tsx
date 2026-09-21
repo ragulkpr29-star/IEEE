@@ -11,17 +11,19 @@ export const Route = createFileRoute("/")({
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
 };
 
 const staggerContainer = {
   animate: {
-    transition: { staggerChildren: 0.1 }
-  }
+    transition: { staggerChildren: 0.1 },
+  },
 };
 
 function Index() {
-  const upcoming = getUpcomingEvents().filter((event) => event.slug === "workshop-1" || event.slug === "megawatt-2-o");
+  const upcoming = getUpcomingEvents().filter(
+    (event) => event.slug === "workshop-1" || event.slug === "megawatt-2-o",
+  );
 
   return (
     <SiteLayout>
@@ -33,31 +35,52 @@ function Index() {
         <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
           <div className="absolute inset-0 grid-faint" />
           <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
             className="absolute right-0 top-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-kec/20 to-transparent blur-3xl"
           />
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
             {/* Left: Text Composition */}
-            <motion.div variants={staggerContainer} initial="initial" animate="animate" className="max-w-2xl relative z-10">
-              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 text-kec-light text-xs font-bold uppercase tracking-[0.2em] mb-8">
+            <motion.div
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+              className="max-w-2xl relative z-10"
+            >
+              <motion.div
+                variants={fadeInUp}
+                className="inline-flex items-center gap-2 text-kec-light text-xs font-bold uppercase tracking-[0.2em] mb-8"
+              >
                 <span className="w-6 h-px bg-kec-light" /> IEEE STUDENT BRANCH · 29741
               </motion.div>
 
-              <motion.h1 variants={fadeInUp} className="font-display font-bold tracking-tight text-white text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
+              <motion.h1
+                variants={fadeInUp}
+                className="font-display font-bold tracking-tight text-white text-5xl sm:text-6xl lg:text-7xl leading-[1.05]"
+              >
                 IEEE POWER &<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">ENERGY SOCIETY</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70">
+                  ENERGY SOCIETY
+                </span>
               </motion.h1>
 
-              <motion.p variants={fadeInUp} className="mt-6 font-display font-bold tracking-widest text-kec-light text-sm sm:text-base uppercase">
+              <motion.p
+                variants={fadeInUp}
+                className="mt-6 font-display font-bold tracking-widest text-kec-light text-sm sm:text-base uppercase"
+              >
                 KONGU ENGINEERING COLLEGE
               </motion.p>
 
-              <motion.p variants={fadeInUp} className="mt-8 text-lg sm:text-xl font-sans font-light text-white/70 max-w-lg leading-relaxed border-l-2 border-white/20 pl-4">
-                Powering Ideas.<br />
+              <motion.p
+                variants={fadeInUp}
+                className="mt-8 text-lg sm:text-xl font-sans font-light text-white/70 max-w-lg leading-relaxed border-l-2 border-white/20 pl-4"
+              >
+                Powering Ideas.
+                <br />
                 Engineering the Future.
               </motion.p>
 
@@ -69,7 +92,10 @@ function Index() {
                   <span className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                   <span className="relative z-10 flex items-center gap-3">
                     EXPLORE EVENTS
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    <ArrowRight
+                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
                   </span>
                 </Link>
                 <Link
@@ -100,7 +126,6 @@ function Index() {
                 />
               </div>
             </motion.div>
-
           </div>
         </div>
       </section>
@@ -125,7 +150,9 @@ function Index() {
                 POWERING THE NEXT GENERATION OF ENERGY ENGINEERS
               </h2>
               <p className="font-sans text-base sm:text-lg text-muted-foreground leading-relaxed">
-                The IEEE Power & Energy Society at Kongu Engineering College provides students with opportunities for technical learning, workshops, lectures, symposiums, hackathons, field exposure and professional development in the power and energy domain.
+                The IEEE Power & Energy Society at Kongu Engineering College provides students with
+                opportunities for technical learning, workshops, lectures, symposiums, hackathons,
+                field exposure and professional development in the power and energy domain.
               </p>
             </motion.div>
 
@@ -139,15 +166,21 @@ function Index() {
             >
               <div className="bg-surface p-6 border border-border shadow-sm flex flex-col gap-2">
                 <span className="font-display font-bold text-3xl text-ieee">29741</span>
-                <span className="font-sans text-xs font-bold tracking-widest uppercase text-muted-foreground">IEEE Student Branch</span>
+                <span className="font-sans text-xs font-bold tracking-widest uppercase text-muted-foreground">
+                  IEEE Student Branch
+                </span>
               </div>
               <div className="bg-surface p-6 border border-border shadow-sm flex flex-col gap-2">
                 <span className="font-display font-bold text-3xl text-navy">2026–27</span>
-                <span className="font-sans text-xs font-bold tracking-widest uppercase text-muted-foreground">Office Bearers</span>
+                <span className="font-sans text-xs font-bold tracking-widest uppercase text-muted-foreground">
+                  Office Bearers
+                </span>
               </div>
               <div className="bg-surface p-6 border border-border shadow-sm flex flex-col gap-2 sm:col-span-2">
                 <span className="font-display font-bold text-3xl text-kec">10</span>
-                <span className="font-sans text-xs font-bold tracking-widest uppercase text-muted-foreground">Planned Activities</span>
+                <span className="font-sans text-xs font-bold tracking-widest uppercase text-muted-foreground">
+                  Planned Activities
+                </span>
               </div>
             </motion.div>
           </div>
@@ -175,8 +208,13 @@ function Index() {
               to="/events"
               className="group inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-navy transition-colors hover:text-ieee"
             >
-              <span className="border-b border-navy/30 group-hover:border-ieee pb-1 transition-colors">View All Events</span>
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              <span className="border-b border-navy/30 group-hover:border-ieee pb-1 transition-colors">
+                View All Events
+              </span>
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              />
             </Link>
           </motion.div>
 
@@ -215,7 +253,9 @@ function Index() {
               ))
             ) : (
               <div className="col-span-full py-12 text-center border border-border bg-background">
-                <p className="text-muted-foreground text-sm uppercase tracking-widest font-bold">No upcoming events at this time.</p>
+                <p className="text-muted-foreground text-sm uppercase tracking-widest font-bold">
+                  No upcoming events at this time.
+                </p>
               </div>
             )}
           </div>

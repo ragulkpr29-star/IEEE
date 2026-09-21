@@ -21,13 +21,14 @@ function EventDetails() {
   const event = Route.useLoaderData();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const dateObj = new Date();
-  const todayStr = new Date(dateObj.getTime() - dateObj.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const todayStr = new Date(dateObj.getTime() - dateObj.getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 10);
   const isPast = event.date < todayStr;
 
   return (
     <SiteLayout>
       <div className="bg-background min-h-screen pb-24">
-
         {/* Top Header / Breadcrumb */}
         <div className="bg-navy border-b border-white/10">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-6">
@@ -42,13 +43,18 @@ function EventDetails() {
         </div>
 
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 mt-12">
-
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <span className="text-[10px] font-bold px-3 py-1.5 bg-ieee text-white uppercase tracking-widest">
                 {event.category}
               </span>
-              <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 ${isPast ? "bg-slate-200 text-slate-600" : "bg-kec/20 text-kec"}`}>
+              <span
+                className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 ${isPast ? "bg-slate-200 text-slate-600" : "bg-kec/20 text-kec"}`}
+              >
                 {isPast ? "Completed" : "Planned"}
               </span>
             </div>
@@ -63,7 +69,9 @@ function EventDetails() {
                   <Calendar className="w-4 h-4 text-ieee" />
                 </div>
                 <div>
-                  <p className="font-sans text-xs uppercase tracking-widest text-muted-foreground font-bold mb-1">Date</p>
+                  <p className="font-sans text-xs uppercase tracking-widest text-muted-foreground font-bold mb-1">
+                    Date
+                  </p>
                   <p className="font-sans font-medium text-foreground">{event.month}</p>
                 </div>
               </div>
@@ -74,7 +82,9 @@ function EventDetails() {
                     <MapPin className="w-4 h-4 text-kec" />
                   </div>
                   <div>
-                    <p className="font-sans text-xs uppercase tracking-widest text-muted-foreground font-bold mb-1">Venue</p>
+                    <p className="font-sans text-xs uppercase tracking-widest text-muted-foreground font-bold mb-1">
+                      Venue
+                    </p>
                     <p className="font-sans font-medium text-foreground">{event.venue}</p>
                   </div>
                 </div>
@@ -83,7 +93,12 @@ function EventDetails() {
           </motion.div>
 
           {event.image && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }} className="mb-12 max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mb-12 max-w-2xl"
+            >
               <img
                 src={event.image}
                 alt={`${event.title} Poster`}
@@ -93,7 +108,11 @@ function EventDetails() {
           )}
 
           {!isPast && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
               <h2 className="eyebrow flex items-center gap-4 mb-6">
                 <span className="w-8 h-px bg-kec" /> About Event
               </h2>
@@ -116,34 +135,43 @@ function EventDetails() {
               )}
             </motion.div>
           )}
-          
+
           {isPast && event.media && event.media.images && event.media.images.length > 0 && (
-            <motion.div id="event-gallery" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.3 }} className="mt-16 pt-16 border-t border-border scroll-mt-24">
+            <motion.div
+              id="event-gallery"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-16 pt-16 border-t border-border scroll-mt-24"
+            >
               <h2 className="eyebrow flex items-center gap-4 mb-8">
                 <span className="w-8 h-px bg-kec" /> EVENT PHOTOS
               </h2>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {event.media.images.map((img, i) => (
-                  <button 
-                    key={i} 
-                    onClick={() => setLightboxIndex(i)} 
+                  <button
+                    key={i}
+                    onClick={() => setLightboxIndex(i)}
                     className="aspect-video bg-surface border border-border rounded-xl overflow-hidden relative group w-full text-left"
-                    aria-label={`View photo ${i+1}`}
+                    aria-label={`View photo ${i + 1}`}
                   >
-                    <img src={img} alt={`${event.title} photo ${i+1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img
+                      src={img}
+                      alt={`${event.title} photo ${i + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   </button>
                 ))}
               </div>
             </motion.div>
           )}
-
         </div>
       </div>
-      
+
       {isPast && event.media?.images && (
         <GalleryLightbox
-          images={event.media.images.map(img => ({ src: img, alt: event.title }))}
+          images={event.media.images.map((img) => ({ src: img, alt: event.title }))}
           index={lightboxIndex}
           onClose={() => setLightboxIndex(null)}
           onChange={setLightboxIndex}

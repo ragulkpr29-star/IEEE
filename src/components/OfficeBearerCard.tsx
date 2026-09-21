@@ -1,9 +1,9 @@
 import { User } from "lucide-react";
-import type { Bearer } from "@/data/officeBearers";
+import type { OfficeBearer } from "@/data/officeBearers";
 import { cn } from "@/lib/utils";
 
 type Props = {
-  bearer: Bearer;
+  bearer: OfficeBearer;
   position: string;
   featured?: boolean;
 };
@@ -13,13 +13,13 @@ export function OfficeBearerCard({ bearer, position, featured = false }: Props) 
     <article
       className={cn(
         "group relative flex flex-col rounded-3xl border border-border bg-surface p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-primary/20",
-        featured ? "sm:p-10" : ""
+        featured ? "sm:p-10" : "",
       )}
     >
       <div
         className={cn(
           "mx-auto flex items-center justify-center overflow-hidden rounded-full border-4 border-background bg-secondary transition-transform duration-700 group-hover:scale-105",
-          featured ? "h-40 w-40 sm:h-48 sm:w-48 shadow-lg" : "h-28 w-28 sm:h-32 sm:w-32 shadow-md"
+          featured ? "h-40 w-40 sm:h-48 sm:w-48 shadow-lg" : "h-28 w-28 sm:h-32 sm:w-32 shadow-md",
         )}
       >
         {bearer.photo ? (
@@ -40,7 +40,7 @@ export function OfficeBearerCard({ bearer, position, featured = false }: Props) 
         <h3
           className={cn(
             "font-display font-bold uppercase tracking-tight text-foreground transition-colors group-hover:text-primary",
-            featured ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"
+            featured ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl",
           )}
         >
           {bearer.name}

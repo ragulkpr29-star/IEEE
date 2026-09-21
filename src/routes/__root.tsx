@@ -78,8 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        title:
-          "IEEE Power & Energy Society | Kongu Engineering College",
+        title: "IEEE Power & Energy Society | Kongu Engineering College",
       },
       {
         name: "description",

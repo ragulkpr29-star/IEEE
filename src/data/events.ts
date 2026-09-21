@@ -59,9 +59,9 @@ export const events: PesEvent[] = [
         "/workshop1/09-19-2026 09_22_46 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
         "/workshop1/09-19-2026 09_22_49 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
         "/workshop1/09-19-2026 09_22_56 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
-        "/workshop1/09-19-2026 09_40_22 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg"
-      ]
-    }
+        "/workshop1/09-19-2026 09_40_22 AM_Perundurai, Erode, 638052, Tamil Nadu, India.jpg",
+      ],
+    },
   },
   {
     slug: "megawatt-2-o",
@@ -71,18 +71,20 @@ export const events: PesEvent[] = [
     category: "Technical Quiz",
     description: "Megawatt 2.O",
     registrationOpen: true,
-    registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfnkkZqMyc1G8UhxomAr-jO8b3CPd3ZqjbeQgbJR5jxT5zg_w/viewform",
+    registrationUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfnkkZqMyc1G8UhxomAr-jO8b3CPd3ZqjbeQgbJR5jxT5zg_w/viewform",
     image: "/megawat.png",
   },
   {
     slug: "circuit-quest",
     title: "Circuit Quest",
-    month: "28 October 2026",
-    date: "2026-10-28",
+    month: "28 September 2026",
+    date: "2026-09-28",
     category: "Technical Quiz",
     description: "An exciting technical event focused on identifying and resolving circuit faults.",
     registrationOpen: true,
-    registrationUrl: "https://docs.google.com/forms/d/e/1FAIpQLSezhZx4P0jM8dZTU0n1j9Vf0BPKVUgQBmmaeEsYJJyNY8Kaag/viewform",
+    registrationUrl:
+      "https://docs.google.com/forms/d/e/1FAIpQLSezhZx4P0jM8dZTU0n1j9Vf0BPKVUgQBmmaeEsYJJyNY8Kaag/viewform",
   },
   {
     slug: "inaugural-guest-lecture",
@@ -100,8 +102,7 @@ export const events: PesEvent[] = [
     month: "September 2026",
     date: "2026-09-27",
     category: "Symposium",
-    description:
-      "Inter-college technical symposium organised by the IEEE PES student chapter.",
+    description: "Inter-college technical symposium organised by the IEEE PES student chapter.",
     registrationOpen: false,
   },
   {
@@ -119,8 +120,7 @@ export const events: PesEvent[] = [
     month: "November 2026",
     date: "2026-11-01",
     category: "Hackathon",
-    description:
-      "Team-based problem solving event on power and energy themes.",
+    description: "Team-based problem solving event on power and energy themes.",
     registrationOpen: false,
   },
   {
@@ -138,8 +138,7 @@ export const events: PesEvent[] = [
     month: "January 2027",
     date: "2027-01-01",
     category: "Field Visit",
-    description:
-      "Industrial/field exposure visit for student members of the chapter.",
+    description: "Industrial/field exposure visit for student members of the chapter.",
     registrationOpen: false,
   },
   {
@@ -148,8 +147,7 @@ export const events: PesEvent[] = [
     month: "February 2027",
     date: "2027-02-01",
     category: "Symposium",
-    description:
-      "Intra-college technical symposium organised by the IEEE PES student chapter.",
+    description: "Intra-college technical symposium organised by the IEEE PES student chapter.",
     registrationOpen: false,
   },
   {
@@ -158,8 +156,7 @@ export const events: PesEvent[] = [
     month: "March 2027",
     date: "2027-03-01",
     category: "Workshop",
-    description:
-      "Second hands-on workshop of the academic year for student members.",
+    description: "Second hands-on workshop of the academic year for student members.",
     registrationOpen: false,
   },
   {
@@ -168,8 +165,7 @@ export const events: PesEvent[] = [
     month: "April 2027",
     date: "2027-04-01",
     category: "Guest Lecture",
-    description:
-      "Closing event of the 2026–27 chapter calendar with a guest lecture.",
+    description: "Closing event of the 2026–27 chapter calendar with a guest lecture.",
     registrationOpen: false,
   },
 ];
@@ -185,9 +181,7 @@ function getTodayStr(now: Date): string {
 
 export function getUpcomingEvents(now: Date = new Date()): PesEvent[] {
   const todayStr = getTodayStr(now);
-  return events
-    .filter((e) => e.date >= todayStr)
-    .sort(byDate);
+  return events.filter((e) => e.date >= todayStr).sort(byDate);
 }
 
 export function getPastEvents(now: Date = new Date()): PesEvent[] {

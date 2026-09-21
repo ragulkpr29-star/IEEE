@@ -9,18 +9,17 @@ export function Footer() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
-          
           {/* Column 1: Branding */}
           <div className="md:col-span-5 lg:col-span-4 flex flex-col items-start">
             <div className="flex items-center gap-6 mb-6">
-              <img 
-                src="/ieeelogo.png" 
-                alt="IEEE Logo" 
+              <img
+                src="/ieeelogo.png"
+                alt="IEEE Logo"
                 className="h-16 sm:h-20 w-auto object-contain"
               />
-              <img 
-                src="/peslogo.png" 
-                alt="IEEE PES Logo" 
+              <img
+                src="/peslogo.png"
+                alt="IEEE PES Logo"
                 className="h-16 sm:h-20 w-auto object-contain"
               />
             </div>
@@ -30,13 +29,12 @@ export function Footer() {
             <p className="font-sans text-xs tracking-widest text-kec-light uppercase mb-2">
               Kongu Engineering College
             </p>
-            <p className="font-sans text-sm text-white/60 mb-6">
-              IEEE Student Branch – 29741
-            </p>
-            
+            <p className="font-sans text-sm text-white/60 mb-6">IEEE Student Branch – 29741</p>
+
             <div className="mt-auto pt-6 border-t border-white/10 w-full inline-block">
               <p className="font-display text-xs font-bold tracking-[0.2em] uppercase text-white/80">
-                Powering Ideas.<br />
+                Powering Ideas.
+                <br />
                 Engineering the Future.
               </p>
             </div>
@@ -73,12 +71,20 @@ export function Footer() {
               <p>Tamil Nadu, India</p>
               <div className="pt-2 space-y-1">
                 <p>
-                  <a href="mailto:ieeekecpes@gmail.com" className="hover:text-kec-light transition-colors">
+                  <a
+                    href="mailto:ieeekecpes@gmail.com"
+                    className="hover:text-kec-light transition-colors"
+                  >
                     Email: ieeekecpes@gmail.com
                   </a>
                 </p>
                 <p>
-                  <a href="https://www.instagram.com/ieee_kec_pes/" target="_blank" rel="noopener noreferrer" className="hover:text-kec-light transition-colors">
+                  <a
+                    href="https://www.instagram.com/ieee_kec_pes/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-kec-light transition-colors"
+                  >
                     Instagram: @ieee_kec_pes
                   </a>
                 </p>

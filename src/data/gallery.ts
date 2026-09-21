@@ -31,6 +31,6 @@ export const galleryImages: GalleryImage[] = [
     src: "/groupimg.jpg",
     alt: "IEEE PES KEC Office Bearers 2026-27",
     category: "Symposiums",
-    event: "Team 2026-27"
-  }
+    event: "Team 2026-27",
+  },
 ];
